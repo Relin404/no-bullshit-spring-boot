@@ -3,6 +3,8 @@ package com.example.demo.mappings;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "customer")
@@ -18,7 +20,11 @@ public class Customer {
   @Column(name = "last_name")
   private String lastName;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "address_id")
-  private Address address;
+  @ManyToMany
+  @JoinTable(
+          name = "customer_address",
+          joinColumns = @JoinColumn(name = "customer_id"),
+          inverseJoinColumns = @JoinColumn(name = "address_id")
+  )
+  private List<Address> addresses;
 }

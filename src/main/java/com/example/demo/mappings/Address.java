@@ -1,7 +1,10 @@
 package com.example.demo.mappings;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -20,4 +23,8 @@ public class Address {
 
   @Column(name = "state")
   private String state;
+
+  @ManyToMany(mappedBy = "addresses")
+  @JsonIgnore
+  private List<Customer> customers;
 }
