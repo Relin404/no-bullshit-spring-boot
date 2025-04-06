@@ -47,12 +47,7 @@ public class SecurityConfiguration {
       .csrf(AbstractHttpConfigurer::disable)
       .authorizeHttpRequests(authorize -> {
         authorize.anyRequest().authenticated();
-//        authorize.requestMatchers("/security/open").permitAll();
-//        authorize.requestMatchers("/security/closed").authenticated();
-//        authorize.requestMatchers(HttpMethod.POST, "/products").authenticated();
-
-//        authorize.requestMatchers(HttpMethod.GET, "security/special").hasAuthority("SPECIAL");
-//        authorize.requestMatchers(HttpMethod.GET, "/security/basic").hasAnyAuthority("BASIC", "SPECIAL");
+        authorize.requestMatchers("/security/open").permitAll();
       })
       .httpBasic(Customizer.withDefaults())
       .build();
