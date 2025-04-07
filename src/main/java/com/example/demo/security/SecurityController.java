@@ -2,10 +2,7 @@ package com.example.demo.security;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/security")
@@ -17,7 +14,7 @@ public class SecurityController {
   }
 
   @PostMapping("/users")
-  public ResponseEntity<String> createUser(CustomUser user) {
+  public ResponseEntity<String> createUser(@RequestBody CustomUser user) {
     // Logic to create a new user
     return createNewUserService.execute(user);
   }
