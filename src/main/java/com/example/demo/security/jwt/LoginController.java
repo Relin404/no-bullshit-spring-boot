@@ -9,7 +9,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/api")
 public class LoginController {
   private final AuthenticationManager authenticationManager;
 
@@ -18,17 +22,15 @@ public class LoginController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<String> login(
-    @RequestBody CustomUser user
-  ) {
-    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+  public ResponseEntity<String> login(@RequestBody CustomUser user) {
+    UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
       user.getUsername(),
       user.getPassword()
     );
-    Authentication authentication = authenticationManager.authenticate(authenticationToken);
+
+    Authentication authentication = authenticationManager.authenticate(token);
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
-    // Generate JWT token
     String jwtToken = JwtUtil.generateToken((User) authentication.getPrincipal());
 
     return ResponseEntity.ok(jwtToken);
