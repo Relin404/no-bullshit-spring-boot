@@ -39,7 +39,7 @@ public class JwtUtil {
   }
 
   private static SecretKey getSigningKey() {
-    byte[] keyBytes = Decoders.BASE64.decode("i-hate-java-someone-please-help-me-i-am-crying-in-a-corner");
+    byte[] keyBytes = Decoders.BASE64.decode("ihatejavasomeonepleasehelpmeiamcryinginacorner");
     return Keys.hmacShaKeyFor(keyBytes);
   }
 }
