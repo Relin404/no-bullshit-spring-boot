@@ -15,6 +15,4 @@ public class ProductDTO {
     this.description = product.getDescription();
     this.price = product.getPrice();
   }
-
-  
 }
