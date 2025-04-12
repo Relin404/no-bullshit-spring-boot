@@ -31,9 +31,5 @@ public class CacheConfiguration {
   @CacheEvict(value = "productCache", allEntries = true)
   @Scheduled(fixedDelay = 7000, initialDelay = 0)
   public void evictProductCache() {
-    System.out.println("Evicting product cache");
-    // This method is scheduled to run every 7 seconds and evicts all entries from the productCache.
-    // This is useful for clearing the cache periodically to ensure that stale data is not served.
-    // The initialDelay parameter specifies the delay before the first execution of the method.
   }
 }
